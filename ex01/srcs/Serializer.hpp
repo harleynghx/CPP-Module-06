@@ -6,8 +6,8 @@ class Serializer {
 private:
     // Private constructors and destructors to prevent instantiation (Orthodox Canonical Form)
     Serializer();
-    Serializer(const Serializer &src);
-    Serializer &operator=(const Serializer &src);
+    Serializer(const Serializer &other);
+    Serializer &operator=(const Serializer &other);
     ~Serializer();
 
 public:

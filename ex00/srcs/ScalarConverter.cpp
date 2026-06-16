@@ -131,12 +131,16 @@ void ScalarConverter::convert(const std::string &s) {
         return;
     }
 
+
+
     // Try parsing as numeric literal
     char *endptr;
     errno = 0;
     double value = std::strtod(s.c_str(), &endptr);
 
-    // If no conversion could be performed
+
+
+    // If == true means the pointer nvr moved (strtod failed)
     if (endptr == s.c_str()) {
         std::cout << "char: impossible\n"
                   << "int: impossible\n"
@@ -146,8 +150,8 @@ void ScalarConverter::convert(const std::string &s) {
     }
 
     // Check if there are invalid trailing characters.
-    // Allowed: nothing, or just 'f' / 'F' (if it is a float literal)
     if (*endptr != '\0') {
+        // check if remaining is just 'f' or 'F'
         if ((*endptr == 'f' || *endptr == 'F') && *(endptr + 1) == '\0') {
             // Valid float literal suffix
         } else {
